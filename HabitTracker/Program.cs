@@ -5,9 +5,10 @@ using System;
 namespace HabitTracker;
 class Program
 {
+    internal static string connectionString = @"Data Source=HabitTracker.db";
+
     static void Main(string[] args)
     {
-        string connectionString = @"Data Source=HabitTracker.db";
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
@@ -20,9 +21,11 @@ class Program
 
             connection.Close();
         }
+
+        GetUserInput();
     }
 
-    static void GetUserInput()
+    internal static void GetUserInput()
     {
         Console.Clear();
         bool closeApp = false;
@@ -43,12 +46,13 @@ class Program
             {
                 case "0":
                     Console.WriteLine("\nGood bye!\n");
+                    closeApp = true;
                     break;
-                //case "1":
-                //    GetAllRecords();
-                //    break;
+                case "1":
+                    Display.GetAllRecords();
+                    break;
                 case "2":
-                    InsertRecord();
+                    Create.InsertRecord();
                     break;
                 //case "3":
                 //    DeleteRecord();
@@ -63,39 +67,5 @@ class Program
         }
     }
 
-    private static void InsertRecord()
-    {
-        string date = GetDateInput();
 
-        int quantity = GetNumberInput("\n\nPlease insert number of glasses or other measure of your choice (no decimals allowed)\n\n");
-
-        using (var connection = new SqliteConnection(connectionString))
-        {
-            connection.Open();
-            var tableCmd = connection.CreateCommand();
-
-            tableCmd.CommandText = $"INSERT INTO drinking_water(date, quantity) VALUES('{date}', {quantity})";
-
-        }
-    }
-
-    internal static string GetDateInput()
-    {
-        Console.WriteLine("\n\nPlease insert the date: (Format: dd-mm-yy). Type 0 to return to main menu.");
-
-        string dateInput = Console.ReadLine();
-
-        if (dateInput == "0") GetUserInput();
-
-        return dateInput;
-    }
-
-    internal static int GetNumberInput(string message)
-    {
-        Console.WriteLine(message);
-
-        int numberInput = Convert.ToInt32(Console.ReadLine);
-
-        return numberInput;
-    }
 }
