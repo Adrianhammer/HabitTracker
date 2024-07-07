@@ -54,12 +54,12 @@ class Program
                 case "2":
                     Create.InsertRecord();
                     break;
-                //case "3":
-                //    DeleteRecord();
-                //    break;
-                //case "4":
-                //    UpdateRecord();
-                //    break;
+                case "3":
+                    Delete.DeleteRecord();
+                    break;
+                case "4":
+                    Update.UpdateRecord();
+                    break;
                 //default:
                 //    Console.WriteLine("\nInvalid Command. Please type a number from 0 to 4");
                 //    break;
