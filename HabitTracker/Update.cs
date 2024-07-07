@@ -31,7 +31,6 @@ namespace HabitTracker
 
                     if (int.TryParse(Console.ReadLine(), out updateQuantity))
                     {
-                        updateQuantity = Convert.ToInt32(Console.ReadLine());
                     }
                     else
                     {
@@ -63,11 +62,12 @@ namespace HabitTracker
                 connection.Open();
                 var tableCmd = connection.CreateCommand();
 
-                tableCmd.CommandText = $"UPDATE drinking_water SET Date = '{updateDate}', Quantity = '{updateQuantity}' WHERE ID = '{inputId}'";
+                tableCmd.CommandText = $"UPDATE drinking_water SET Date = '{updateDate}', Quantity = {updateQuantity} WHERE ID = {inputId}";
 
                 try
                 {
                     tableCmd.ExecuteNonQuery();
+                    Console.WriteLine("Record updated successfully");
 
                 }
                 catch (Exception e)

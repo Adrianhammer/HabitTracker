@@ -1,6 +1,8 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using HabitTracker.Assets;
+using Microsoft.Data.Sqlite;
 using Microsoft.VisualBasic.FileIO;
 using System;
+using System.Text;
 
 namespace HabitTracker;
 class Program
@@ -27,10 +29,12 @@ class Program
 
     internal static void GetUserInput()
     {
+
         Console.Clear();
         bool closeApp = false;
         while (closeApp == false)
         {
+            AsciiArt.PrintAscii();
             Console.WriteLine("\n\nMAIN MENU");
             Console.WriteLine("\nWhat would you like to do?");
             Console.WriteLine("\nType 0 to close the application");
@@ -60,9 +64,9 @@ class Program
                 case "4":
                     Update.UpdateRecord();
                     break;
-                //default:
-                //    Console.WriteLine("\nInvalid Command. Please type a number from 0 to 4");
-                //    break;
+                default:
+                    Console.WriteLine("\nInvalid Command. Please type a number from 0 to 4");
+                    break;
             }
         }
     }
