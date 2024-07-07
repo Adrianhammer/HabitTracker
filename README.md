@@ -1,5 +1,5 @@
 # HabitTracker
-Console based CRUD applicatin to track time spent. Developed using C# and SQLite
+Console based CRUD application for learning C# development.
 
 ## Technologies used 
 
